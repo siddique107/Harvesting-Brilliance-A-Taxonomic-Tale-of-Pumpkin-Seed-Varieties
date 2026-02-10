@@ -49,7 +49,7 @@ This project helps in automated seed classification and supports agricultural re
 ![Prediction](static/images/Urgup%20Sivrisi%20form.png)
 
 ### Result Page
-![Result](static/images/Cercevelik%20result.png)
+![Result](/images/Cercevelik%20result.png)
 ![Result](static/images/Urgup%20Sivrisi%20Result.png)
 
 ---
