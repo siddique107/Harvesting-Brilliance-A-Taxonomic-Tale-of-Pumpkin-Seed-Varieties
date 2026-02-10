@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pumpkin Classification Result</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+        }
+        /* ===== Navbar ===== */
+        header {
+            background: linear-gradient(90deg, #2d5016, #3d6b1f);
+            color: white;
+            padding: 14px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+        nav a:hover {
+            opacity: 0.8;
+        }
+        .main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+        .container {
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            max-width: 800px;
+            width: 100%;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        h1 {
+            text-align: center;
+            color: #2d5016;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+        }
+        .result-box {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 600;
+            border: 2px solid #4caf50;
+        }
+        .highlight {
+            color: #2d5016;
+            font-size: 2rem;
+            font-weight: 700;
+            display: block;
+            margin-top: 0.5rem;
+        }
+        h3 {
+            margin-top: 2rem;
+            color: #2d5016;
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .form-group {
+            background-color: #f1f8f4;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .form-group label {
+            font-weight: 600;
+            color: #2d5016;
+            font-size: 0.9rem;
+        }
+        .form-group p {
+            margin: 0.5rem 0 0;
+            color: #333;
+            font-size: 1rem;
+        }
+        .button {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, #4caf50, #66bb6a);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s;
+            text-align: center;
+            display: block;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+        }
+        /* ===== Footer ===== */
+        footer {
+            background: linear-gradient(90deg, #2d5016, #3d6b1f);
+            color: white;
+            text-align: center;
+            padding: 12px;
+            font-size: 0.9rem;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .highlight {
+                font-size: 1.5rem;
+            }
+            header {
+                padding: 14px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <span>Pumpkin Seed AI</span>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/predict">Prediction</a>
+        </nav>
+    </header>
+    
+    <div class="main-content">
+        <div class="container">
+            <h1>🎃 Classification Result</h1>
+            <div class="result-box">
+                Predicted Variety:
+                <span class="highlight">
+                    {% if prediction == 0 %}
+                        Çerçevelik
+                    {% elif prediction == 1 %}
+                        Ürgüp Sivrisi
+                    {% else %}
+                        {{ prediction }}
+                    {% endif %}
+                </span>
+            </div>
+            <h3>Input Measurements</h3>
+            <div class="form-grid">
+                {% for feature, value in input_summary.items() %}
+                    <div class="form-group">
+                        <label>{{ feature }}</label>
+                        <p>{{ value }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+            <a href="/predict" class="button">🔁 Try Another Prediction</a>
+        </div>
+    </div>
+    
+    <footer>
+        © Developed by- Siddique Sanadi
+    </footer>
+</body>
+</html>
